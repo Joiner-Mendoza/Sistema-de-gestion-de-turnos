@@ -1,0 +1,29 @@
+.table {
+    background-color: #c7c9f5;
+    padding: 30px 40px;
+    border-radius: 24px;
+    min-height: 100vh;
+}
+
+.span-state {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+}
+
+.table table td {
+    color: #374151;
+}
+
+.table table th {
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+Q
+    .table {
+        padding: 16px;
+    }
+
+}

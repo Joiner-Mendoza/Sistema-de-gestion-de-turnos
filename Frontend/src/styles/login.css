@@ -1,0 +1,20 @@
+
+@media screen and (max-width: 768px) {
+.aptmo-container {
+    padding: 0 ; /* Reduce el padding horizontal en móviles */
+ }
+ .aptmo  {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    height: 100vh;
+    padding: 20% 7%;
+    margin: 0 auto; 
+ } 
+ .aptmo h2:nth-child(1) {
+    font-size: 20px; /* Reduce el tamaño del título en móviles */
+ }
+}
+
