@@ -5,8 +5,8 @@ WORKDIR /app
 COPY . .
 
 RUN chmod +x gradlew
-RUN ./gradlew bootJar
+RUN ./gradlew bootJar --no-daemon
 
 EXPOSE 8080
 
-CMD ["java","-jar","build/libs/api.jar"]
+CMD ["sh", "-c", "java -jar $(ls build/libs/*.jar | grep -v plain | head -n 1)"]
