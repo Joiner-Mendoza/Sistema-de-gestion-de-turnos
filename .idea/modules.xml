@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Sistema-De-Citas.iml" filepath="$PROJECT_DIR$/.idea/Sistema-De-Citas.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api.main.iml" />
     </modules>
   </component>
 </project>
