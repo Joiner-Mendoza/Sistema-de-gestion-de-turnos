@@ -7,10 +7,13 @@ import axios from "axios";
 import Swal from "sweetalert2";//comanbdo para instalar: npm install sweetalert2
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
+
+
 function Registro() { 
   const navigate = useNavigate();
   // obtenemos al ususario logueado para validar su rol
   const { user } = useContext(AuthContext);
+  
 
 // variable para la url del backend
   const API_URL = import.meta.env.VITE_API_URL;
@@ -30,9 +33,11 @@ function Registro() {
   //   const generateUser = `${name}${lastName}`.replace(/\s+/g, "");
   //   setNumIdentificacion(generateUser)
   // },[name, lastName]); 
+  const [loading, setLoading] = useState(false);
 
 const sendRegister = async (e) => {
   e.preventDefault();
+  if (loading) return; // anti spam click 
   setFieldErrors({});
 // ######### validaciones #########
 const errors = {};// creo los distintos mensajes si los campos estan vacios
@@ -86,7 +91,10 @@ if (password !== confirmPassword) {
   errors.confirmPassword = "La contraseña debe contener al menos una letra mayúscula";
 }
 // ######### validaciones #########
-
+if (Object.keys(errors).length > 0) {
+  setFieldErrors(errors);
+  return; // Si hay errores, no se envía el formulario
+}
   try {
     const dataToSend = {
       name,
@@ -99,7 +107,7 @@ if (password !== confirmPassword) {
       // pasamos el rol seleccionado, por defecto es ROLE_EMPLEADO pero si el usuario logueado es gerente o rrhh podra elegir el rol del nuevo usuario
       role:(user?.role === "ROLE_GERENTE" || user?.role === "ROLE_RRHH") ? role : "ROLE_EMPLEADO"
     };
-
+    // console.log("Venv", API_URL);
     const response = await axios.post(`${API_URL}/register`,dataToSend);
     Swal.fire({ 
       icon: "success",
@@ -112,6 +120,7 @@ if (password !== confirmPassword) {
       icon: "error",
       title: "Error en registro"
     });
+    // console.log("Error en el registro:", error.response?.data?.error || error.message);
   };
   }
   return (
@@ -143,7 +152,7 @@ if (password !== confirmPassword) {
 
               />
                   {fieldErrors.name && (
-                  <span className="error-message">
+                  <span className="error-message" style={{ color: "#fff" }}>
                     {fieldErrors.name}
                   </span>
                 )}
@@ -161,7 +170,7 @@ if (password !== confirmPassword) {
                 onChange={(e) => setLastName(e.target.value)}
               />
                   {fieldErrors.lastName && (
-                  <span className="error-message">
+                  <span className="error-message" style={{ color: "#fff" }}>
                     {fieldErrors.lastName}
                   </span>
                 )}
@@ -185,7 +194,7 @@ if (password !== confirmPassword) {
                 }}
               />
                   {fieldErrors.numIdentificacion && (
-                  <span className="error-message">
+                  <span className="error-message" style={{ color: "#fff" }}>
                     {fieldErrors.numIdentificacion}
                   </span>
                 )}
@@ -207,7 +216,7 @@ if (password !== confirmPassword) {
 
             />
               {fieldErrors.email && ( 
-                  <span className="error-message">
+                  <span className="error-message" style={{ color: "#fff" }}>
                     {fieldErrors.email}
                   </span>
               )}
@@ -229,7 +238,7 @@ if (password !== confirmPassword) {
               onChange={(e) => setPhone(e.target.value)}
             />
             {(fieldErrors.phone && (
-                  <span className="error-message">
+                  <span className="error-message" style={{ color: "#fff" }}> 
                     {fieldErrors.phone}
                   </span>
             ))}
@@ -279,7 +288,7 @@ if (password !== confirmPassword) {
                 onChange={(e) => setPassword(e.target.value)}
               />
               {fieldErrors.password && (
-                  <span className="error-message">
+                  <span className="error-message" style={{ color: "#fff" }}>
                     {fieldErrors.password}
                   </span>
               )}
@@ -298,7 +307,7 @@ if (password !== confirmPassword) {
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
               {fieldErrors.confirmPassword && (
-                  <span className="error-message">
+                  <span className="error-message" style={{ color: "#fff" }}>
                     {fieldErrors.confirmPassword}
                   </span>
               )}
@@ -317,12 +326,25 @@ if (password !== confirmPassword) {
               Cancelar
             </button>
               
-            <button
-              type="submit"
-              className="bg-indigo-500 hover:bg-indigo-400 px-4 py-2 rounded-md text-white font-semibold"
-            >
-              Registrarse
-            </button>
+          <button
+            type="button"
+            onClick={sendRegister}
+            disabled={loading}
+            className={`w-full py-3.5 font-black text-white rounded-xl shadow-lg uppercase tracking-widest text-xs transition-all mt-4 
+            ${loading 
+              ? "bg-gray-600 cursor-not-allowed" 
+              : "bg-indigo-600 hover:bg-indigo-500 shadow-indigo-600/20 cursor-pointer"
+            }`}
+          >
+            {loading ? (
+              <div className="flex items-center justify-center gap-2">
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                Registrando... 
+              </div>
+            ) : (
+              "Registrarse "
+            )}
+          </button>
 
           </div>
 
