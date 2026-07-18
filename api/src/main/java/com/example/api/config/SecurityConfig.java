@@ -48,7 +48,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(List.of(
+        config.setAllowedOriginPatterns(List.of(// el setAllowedOriginPatterns permite usar comodines en las rutas, a diferencia de setAllowedOrigins que no lo permite
                 "http://localhost:5173",
                 "http://localhost:5174",
                 "https://*.vercel.app"));// esta ruta es para aceptar cualquier ruta de vercel
