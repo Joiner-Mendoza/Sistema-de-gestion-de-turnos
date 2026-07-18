@@ -70,83 +70,145 @@ export function FormularioCrearTurno({ onTurnoCreado }) {
     }
   };
 
-  return (
-    <div className="w-full bg-white p-5 rounded-2xl shadow-md border max-w-xl mx-auto">
-      <h2 className="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Asignar Nuevo Turno</h2>
-      
-      <form onSubmit={handleSubmit} className="space-y-4">
-        
-        {/* Cédula del Empleado */}
-        <div className="flex flex-col gap-1">
-          <label className="text-xs font-bold text-gray-500">Cédula del Trabajador *</label>
-          <input
-            type="number"
-            placeholder="Ej. 100456789"
-            value={employeeCc}
-            onChange={(e) => setEmployeeCc(e.target.value)}
-            className="w-full px-4 py-2 text-sm border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 border-gray-300 transition"
-            required
-          />
+return (
+  <div className="bg-gray-900 min-h-screen py-12 px-6">
+
+    <div className="mx-auto max-w-2xl">
+
+      <form
+        className="space-y-8"
+        onSubmit={handleSubmit}
+      >
+
+        {/* TITULO */}
+
+        <div>
+          <h2 className="text-2xl font-bold text-white">
+            Asignar Nuevo Turno
+          </h2>
+
+          <p className="mt-2 text-gray-400">
+            Complete la información del turno.
+          </p>
         </div>
 
-        {/* Fecha del Turno */}
-        <div className="flex flex-col gap-1">
-          <label className="text-xs font-bold text-gray-500">Fecha del Turno *</label>
+        {/* CEDULA */}
+
+        <div>
+
+          <label className="block text-sm font-medium text-white">
+            Cédula del trabajador
+          </label>
+
+          <input
+            type="number"
+            value={employeeCc}
+            onChange={(e) => setEmployeeCc(e.target.value)}
+            placeholder="1001234567"
+            className="mt-2 w-full rounded-md bg-white/5 px-3 py-2 text-white outline outline-1 outline-white/10 focus:outline-indigo-500"
+          />
+
+        </div>
+
+        {/* FECHA */}
+
+        <div>
+
+          <label className="block text-sm font-medium text-white">
+            Fecha
+          </label>
+
           <input
             type="date"
             value={fecha}
-            onChange={(e) => setFecha(e.target.value)}
-            className="w-full px-4 py-2 text-sm border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 border-gray-300 transition"
-            required
+            onChange={(e)=>setFecha(e.target.value)}
+            className="mt-2 w-full rounded-md bg-white/5 px-3 py-2 text-white outline outline-1 outline-white/10 focus:outline-indigo-500"
           />
+
         </div>
 
-        {/* Horarios (Grid de 2 columnas para que quepa bien en celular) */}
-        <div className="grid grid-cols-2 gap-4">
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-500">Hora Entrada *</label>
+        {/* HORAS */}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+          <div>
+
+            <label className="block text-sm font-medium text-white">
+              Hora de entrada
+            </label>
+
             <input
               type="time"
               value={horaEntrada}
-              onChange={(e) => setHoraEntrada(e.target.value)}
-              className="w-full px-4 py-2 text-sm border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 border-gray-300 transition"
-              required
+              onChange={(e)=>setHoraEntrada(e.target.value)}
+              className="mt-2 w-full rounded-md bg-white/5 px-3 py-2 text-white outline outline-1 outline-white/10 focus:outline-indigo-500"
             />
+
           </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-bold text-gray-500">Hora Salida *</label>
+
+          <div>
+
+            <label className="block text-sm font-medium text-white">
+              Hora de salida
+            </label>
+
             <input
               type="time"
               value={horaSalida}
-              onChange={(e) => setHoraSalida(e.target.value)}
-              className="w-full px-4 py-2 text-sm border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 border-gray-300 transition"
-              required
+              onChange={(e)=>setHoraSalida(e.target.value)}
+              className="mt-2 w-full rounded-md bg-white/5 px-3 py-2 text-white outline outline-1 outline-white/10 focus:outline-indigo-500"
             />
+
           </div>
+
         </div>
 
-        {/* Observaciones adicionales */}
-        <div className="flex flex-col gap-1">
-          <label className="text-xs font-bold text-gray-500">Comentarios Opcionales</label>
+        {/* OBSERVACIONES */}
+
+        <div>
+
+          <label className="block text-sm font-medium text-white">
+            Observaciones
+          </label>
+
           <textarea
-            rows="2"
-            placeholder="Opcionmal"
+            rows="4"
             value={observation}
-            onChange={(e) => setObservation(e.target.value)}
-            className="w-full px-4 py-2 text-sm border rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 border-gray-300 transition resize-none"
+            onChange={(e)=>setObservation(e.target.value)}
+            placeholder="Observaciones del turno..."
+            className="mt-2 w-full rounded-md bg-white/5 px-3 py-2 text-white outline outline-1 outline-white/10 focus:outline-indigo-500 resize-none"
           />
+
         </div>
 
-        {/* Botón de Enviar */}
-        <button
-          type="submit"
-          disabled={enviando}
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl transition text-sm flex items-center justify-center gap-2 shadow disabled:opacity-50 cursor-pointer"
-        >
-         {enviando ? "Guardando en el sistema..." : "Registrar Turno"}
-        </button>
+        {/* BOTONES */}
+
+        <div className="flex justify-end gap-4 pt-6">
+
+          <button
+            type="button"
+            onClick={() => navigate("/dashboard")}
+            className="bg-gray-700 hover:bg-gray-600 px-5 py-2 rounded-md text-white font-semibold transition"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="submit"
+            disabled={enviando}
+            className="bg-indigo-500 hover:bg-indigo-400 px-5 py-2 rounded-md text-white font-semibold transition disabled:opacity-50"
+          >
+            {enviando
+              ? "Guardando..."
+              : "Registrar Turno"}
+          </button>
+
+        </div>
 
       </form>
+
     </div>
-  );
+
+  </div>
+);
 }
