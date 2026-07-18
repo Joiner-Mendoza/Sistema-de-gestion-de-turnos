@@ -51,7 +51,7 @@ public class SecurityConfig {
         config.setAllowedOrigins(List.of(
                 "http://localhost:5173",
                 "http://localhost:5174",
-                "https://sistema-de-gestion-de-turnos.vercel.app/#/login"));
+                "https://*.vercel.app"));// esta ruta es para aceptar cualquier ruta de vercel
         config.setAllowedMethods(
                 List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
         );
