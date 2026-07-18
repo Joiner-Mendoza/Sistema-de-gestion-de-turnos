@@ -170,7 +170,7 @@ function TurnosTable() {
   if (loading) {
     return (
       <div className="w-full min-h-screen flex items-center justify-center bg-gray-100">
-        <p className="text-xl font-semibold text-indigo-600 animate-pulse">Sincronizando tabla con el servidor...</p>
+        <p className="text-xl font-semibold text-indigo-600 animate-pulse">Cargando... <span className="animate-spin">↻</span></p>
       </div>
     );
   }
