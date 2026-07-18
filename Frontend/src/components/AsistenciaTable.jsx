@@ -113,7 +113,7 @@ function AsistenciaTable() {
   }
 
   return (
-    <div className="w-full bg-gray-100 p-6 table">      
+    <div className="w-full bg-gray-100 p- table">      
 
       {/* HEADER */}
       <div className="flex items-center justify-between mb-8">

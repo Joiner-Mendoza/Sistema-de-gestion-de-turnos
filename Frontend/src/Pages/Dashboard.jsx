@@ -136,7 +136,7 @@ export default function Dashboard() {
       </div>
 
       {/* MAIN CONTENT */}
-      <div className="flex-1 p-4 md:p-10 flex flex-col">
+      <div className="flex-1 p-4 md:p-0 flex flex-col">
         
         {/* NAVBAR MÓVIL SUPERIOR */}
         <div className="flex items-center justify-between md:hidden mb-4 bg-gray-800/40 p-3 rounded-xl border border-gray-800">
@@ -150,7 +150,7 @@ export default function Dashboard() {
         </div>
 
         {/* CONTENEDOR DE VISTAS */}
-        <div className="border border-dashed border-gray-700 rounded-xl min-h-[600px] flex flex-col p-2 md:p-6 bg-gray-900/50">
+        <div className="border border-dashed border-gray-700 rounded-x0 min-h-[600px] flex flex-col p-2 md:p-0 bg-gray-900/50 ">
           
           {/* CONTROL DEL MODAL/VISTA DE PERFIL */}
           {showProfile ? (
